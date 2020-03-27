@@ -3,7 +3,7 @@ const resize = require('./resize')
 
 const server = express()
 const port = process.env.PORT || 3000;
-
+console.log(process.env.PORT);
 server.get('/', (req, res) => {
 
 	const widthString = req.query.width
