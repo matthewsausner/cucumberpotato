@@ -2,6 +2,7 @@ const express = require('express')
 const resize = require('./resize')
 
 const server = express()
+
 const port = process.env.PORT || 3000
 
 server.get('/', (req, res) => {
