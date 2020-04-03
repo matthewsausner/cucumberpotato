@@ -18,6 +18,6 @@
   "homepage": "https://github.com/matthewsausner/cucumberpotato#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "sharp": "^0.25.1"
+    "sharp": "^0.25.2"
   }
 }
