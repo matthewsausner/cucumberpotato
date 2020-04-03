@@ -6,8 +6,10 @@ const port = process.env.PORT || 3000
 
 server.get('/', (req, res) => {
 
-	const widthString = 700
-	const heightString = 700
+
+	const widthString = 450
+	const heightString = 450
+
 	const format = req.query.format
 
 	let width, height
