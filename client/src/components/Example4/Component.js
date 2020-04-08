@@ -29,7 +29,7 @@ export const Example4Container = ({ coverDeg, coverDirection, playState, progres
       src="./girtv1.jpg"
       onClick={playState === 'play' ? onPlayBtnClick : onStopBtnClick}
     />
-    <div className="player" vertical-align="middle">
+    <div className="player">
       <div className="bars-wrapper">
         <canvas className="frequency-bars"></canvas>
         <canvas className="sinewave"></canvas>
