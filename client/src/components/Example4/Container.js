@@ -70,9 +70,6 @@ export const Example4 = compose(
 
       props.setCoverDeg(getCoverDeg());
       props.setCoverDirection(props.coverDirection * -1)
-      const cover = document.querySelector('.cover')
-      // cover.classList.add('stop');
-      // cover.classList.remove('play');
 
       const { player, audionState  } = props;
       props.changeAudionState({
