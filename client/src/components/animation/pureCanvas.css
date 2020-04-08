@@ -1,0 +1,28 @@
+image: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'contain'
+}
+
+img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  margin-top: -250px; /* Half the height */
+  margin-left: -250px; /* Half the width */
+  -webkit-transition: 3s;
+  -moz-transition: 3s;
+  -ms-transition: 3s;
+  -o-transition: 3s;
+  transition: 3s;
+  margin-left: 50% !important;
+}
+
+
+@keyframes spin {
+  from {transform:rotate(0deg);
+  to {transform:rotate(360deg);}
+}

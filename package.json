@@ -1,23 +1,17 @@
 {
-  "name": "cucumberpotato",
+  "name": "server",
   "version": "1.0.0",
-  "description": "sausspit.biz",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "./node_modules/.bin/gulp run:dev"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/matthewsausner/cucumberpotato.git"
-  },
-  "author": "Saus",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/matthewsausner/cucumberpotato/issues"
-  },
-  "homepage": "https://github.com/matthewsausner/cucumberpotato#readme",
-  "dependencies": {
-    "express": "^4.17.1",
-    "sharp": "^0.25.2"
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-nodemon": "^2.4.2",
+    "gulp-run": "^1.7.1"
   }
 }
