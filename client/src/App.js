@@ -6,7 +6,7 @@ import 'bootstrap-material-design/dist/css/bootstrap-material-design.min.css';
 
 const App = () =>
   <Router>
-    <div className="container-fluid mt-2">
+    <div className="container-fluid mt-2" style={{height: "100%"}}>
       <AppRouter />
     </div>
   </Router>;

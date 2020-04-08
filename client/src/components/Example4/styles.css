@@ -47,6 +47,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
 }
 
 .frequency-bars {
@@ -94,4 +95,14 @@ img {
   margin-top: -250px; /* Half the height */
   margin-left: -250px; /* Half the width */
   z-index: 1;
+}
+
+.display {
+  height: 100%;
+}
+
+.player {
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
