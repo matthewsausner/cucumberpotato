@@ -21,7 +21,8 @@ export const Example4 = compose(
     changeAudionState: newState => setAudionState({ ...audionState, ...newState }),
   })),
   withHandlers({
-    onPlayBtnClick: (props) => async () => {
+
+    onPageLoad: (props) => async () =>{
       const { player, audionState } = props;
       try {
 
@@ -37,22 +38,34 @@ export const Example4 = compose(
             fillStyle: 'rgb(0, 0, 0)', // background
             strokeStyle: 'rgb(130, 0, 255)', // line color
             lineWidth: 1,
-            fftSize: 1024 // delization of bars from 1024 to 32768
+            fftSize: 2048 // delization of bars from 1024 to 32768
           });
 
-          props.setLoading(false);
           props.setPlayer(newPlayer);
+
           props.changeAudionState({
-            startedAt: Date.now(),
-            isPause: false,
+            startedAt: Date.now() - audionState.pausedAt,
+            isPause: true,
             duration: newPlayer.duration,
           });
-
-          newPlayer.play(0);
-
-          return props.setPlayState('stop');
+          newPlayer.stop();
+          if(document.getElementById('loadWheel')){
+            document.getElementById('loadWheel').classList.remove('loadWheel'); 
+          }
+          props.setLoading(false);
         }
+        return props.setPlayState('play');
+      } catch (e) {
+        props.setLoading(false);
+        console.log(e);
+      }
+    },
 
+    onPlayBtnClick: (props) => async () => {
+
+      const { player, audionState } = props;
+      try {
+       
         props.changeAudionState({
           startedAt: Date.now() - audionState.pausedAt,
           isPause: false,
@@ -104,6 +117,9 @@ export const Example4 = compose(
   lifecycle({
     componentDidMount() {
       setInterval(() => {
+        if(!this.props.player){
+          this.props.onPageLoad();
+        }
         const { startedAt, isPause, duration } = this.props.audionState;
         if(startedAt && !isPause) {
           const playbackTime = (Date.now() - startedAt) / 1000;
