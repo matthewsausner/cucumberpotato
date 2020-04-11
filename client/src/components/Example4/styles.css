@@ -88,6 +88,7 @@ img {
 
 .dead{
   visibility: hidden;
+  display: none;
 }
 
 .player {
@@ -102,17 +103,35 @@ img {
   left: 50%;
   height: 200px;
   width:200px;
-  margin-top: -50px; /* Half the height */
-  margin-left: -50px; /* Half the width */
+  margin-top: -25px; /* Half the height */
+  margin-left: -25px; /* Half the width */
   z-index:3;
   color:grey;
 }
+
 .message-bottom {
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;
   position: absolute;
-  top: 90%;
-  left: 47%;
+  bottom: 0;
+  width: 100%;
+  height: 10rem;
   z-index:1;
-  color:grey;
+  color: white;
+  font-family: Menlo;
+  font-size: 12px;
+}  
+
+.message-middle {
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50rem;
+  z-index:1;
   color: white;
   font-family: Menlo;
   font-size: 12px;

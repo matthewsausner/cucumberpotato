@@ -16,7 +16,7 @@ export const Example4 = compose(
     duration: 0,
   }),
   withState('coverDeg', 'setCoverDeg', 0),
-  withState('coverDirection', 'setCoverDirection', 1),
+  withState('toDeg', 'setToDeg', 1),
   withProps(({ audionState, setAudionState }) => ({
     changeAudionState: newState => setAudionState({ ...audionState, ...newState }),
   })),
@@ -38,7 +38,7 @@ export const Example4 = compose(
             fillStyle: 'rgb(0, 0, 0)', // background
             strokeStyle: 'rgb(130, 0, 255)', // line color
             lineWidth: 1,
-            fftSize: 2048 // delization of bars from 1024 to 32768
+            fftSize: 4096 // delization of bars from 1024 to 32768
           });
 
           props.setPlayer(newPlayer);
@@ -53,6 +53,7 @@ export const Example4 = compose(
             document.getElementById('loadWheel').classList.remove('loadWheel'); 
           }
           props.setLoading(false);
+
         }
         return props.setPlayState('play');
       } catch (e) {
@@ -81,8 +82,12 @@ export const Example4 = compose(
     },
     onStopBtnClick: props => () => {
 
-      props.setCoverDeg(getCoverDeg());
-      props.setCoverDirection(props.coverDirection * -1)
+      // props.setCoverDeg(getCoverDeg());
+      // props.setToDeg(props.toDeg * -1)
+
+      if(document.getElementById('construction')){
+        document.getElementById('construction').classList.remove('dead'); 
+      }
 
       const { player, audionState  } = props;
       props.changeAudionState({

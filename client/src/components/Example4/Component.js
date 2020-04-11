@@ -15,37 +15,47 @@ import { getCoverDeg } from './utils';
        <div className="message">
         <div >" I named it after all the stuff I've had up my butt" - Matthew Sausner</div>
       </div>
-*/
 
-export const Example4Container = ({ audionState, coverDeg, coverDirection, playState, progress, volumeLevel, loading, onPlayBtnClick, onVolumeChange, onStopBtnClick, onProgressClick }) =>
-<>
- 
-  <div id='loadWheel' className='loadWheel'>
-    <i className={loading?'fas fa-spinner fa-spin fa-5x':''}></i>
-  </div>
-   <div className="message-top">
-    <div >"I named the site after all the stuff that's been up my butt" - Saus</div>
-  </div>
-  <div className={`display ${loading?'loading':''}`}>
-    <img 
       style={
         playState!=='play' && (Date.now() - audionState.startedAt) / 1000 < audionState.duration
         ?{
           animation: `spin 12s linear infinite`,
           '--deg': `${coverDeg}deg`,
-          '--coverDirection': `${-(360+Math.abs(coverDeg)) }deg`,
+          '--toDeg': `${-(360+Math.abs(coverDeg)) }deg`,
         }
         :{
           transform:`rotate(${(Date.now() - audionState.startedAt) / 1000 < audionState.duration ? coverDeg : getCoverDeg()}deg)`,
         }
       }
+*/
+
+export const Example4Container = ({ audionState, coverDeg, toDeg, playState, progress, volumeLevel, loading, onPlayBtnClick, onVolumeChange, onStopBtnClick, onProgressClick }) =>
+<>
+ 
+  <div id='loadWheel' className='loadWheel'>
+    <i className={loading?'fas fa-spinner fa-spin fa-5x':''}></i>
+  </div>
+  <div id='playBtn' className='loadWheel'>
+    <i 
+      className={playState === 'play' && !loading ?'fas fa-play fa-5x':''}
+      onClick={onPlayBtnClick}
+    ></i>
+  </div>
+   <div className="message-top">
+    <div >"I named the site after all the stuff that's been up my butt" - Saus</div>
+  </div>
+  <div className="message-middle dead" id = 'construction'>
+    <div >{playState === 'stop' ? "" : "Site still under construction, you have to refresh to listen again lol"}</div>
+  </div>
+  <div className={`display ${loading?'loading':''}`}>
+    <img 
       id='cover' 
-      className={`cover${loading?' loading':''}`}
+      className={`cover${loading || playState === 'play' ?' loading':''}`}
       alt={'cover'}
       width='400' 
       height='400' 
       src='./girtv1.jpg'
-      onClick={playState === 'play' ? onPlayBtnClick : onStopBtnClick}
+      onClick={playState === 'play' ? '' : onStopBtnClick}
     />
     <div className='player'>
       <div className='bars-wrapper'>
@@ -54,7 +64,7 @@ export const Example4Container = ({ audionState, coverDeg, coverDirection, playS
       </div>
     </div>
   </div>
-  <div className="message-bottom">
-    <div >OhLawdyDearyMe</div>
+  <div className="message-bottom" vertical-align="center">
+    <div >moss don't</div>
   </div>
 </>;
