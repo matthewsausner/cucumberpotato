@@ -37,7 +37,10 @@ export const Example4Container = ({ audionState, coverDeg, toDeg, playState, pro
   </div>
   <div id='playBtn' className='loadWheel'>
     <i 
-      className={playState === 'play' && !loading ?'fas fa-play fa-5x':''}
+      className={
+        playState ==='play'
+        &&!loading 
+        ||!((Date.now() - audionState.startedAt) / 1000>0)?'fas fa-play fa-5x':''}
       onClick={onPlayBtnClick}
     ></i>
   </div>
@@ -47,7 +50,7 @@ export const Example4Container = ({ audionState, coverDeg, toDeg, playState, pro
   <div className="message-middle dead" id = 'construction'>
     <div >{playState === 'stop' ? "" : "Site still under construction, you have to refresh to listen again lol"}</div>
   </div>
-  <div className={`display ${loading?'loading':''}`}>
+  <div className={`display`}>
     <img 
       id='cover' 
       className={`cover${loading || playState === 'play' ?' loading':''}`}
