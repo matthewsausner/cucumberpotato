@@ -27,6 +27,16 @@ import { getCoverDeg } from './utils';
           transform:`rotate(${(Date.now() - audionState.startedAt) / 1000 < audionState.duration ? coverDeg : getCoverDeg()}deg)`,
         }
       }
+
+      <div id='playBtn' className='loadWheel'>
+        <i 
+          className={
+            playState ==='play'
+            &&!loading 
+            &&!((Date.now() - audionState.startedAt) / 1000>0)?'fas fa-play fa-5x':''}
+          onClick={onPlayBtnClick}
+        ></i>
+      </div>
 */
 
 export const Example4Container = ({ audionState, coverDeg, toDeg, playState, progress, volumeLevel, loading, onPlayBtnClick, onVolumeChange, onStopBtnClick, onProgressClick }) =>
@@ -34,15 +44,6 @@ export const Example4Container = ({ audionState, coverDeg, toDeg, playState, pro
  
   <div id='loadWheel' className='loadWheel'>
     <i className={loading?'fas fa-spinner fa-spin fa-5x':''}></i>
-  </div>
-  <div id='playBtn' className='loadWheel'>
-    <i 
-      className={
-        playState ==='play'
-        &&!loading 
-        ||!((Date.now() - audionState.startedAt) / 1000>0)?'fas fa-play fa-5x':''}
-      onClick={onPlayBtnClick}
-    ></i>
   </div>
    <div className="message-top">
     <div >"I named the site after all the stuff that's been up my butt" - Saus</div>
@@ -58,7 +59,7 @@ export const Example4Container = ({ audionState, coverDeg, toDeg, playState, pro
       width='400' 
       height='400' 
       src='./girtv1.jpg'
-      onClick={playState === 'play' ? '' : onStopBtnClick}
+      onClick={playState === 'play' ? onPlayBtnClick : onStopBtnClick}
     />
     <div className='player'>
       <div className='bars-wrapper'>
