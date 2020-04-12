@@ -47,7 +47,7 @@ export const Example4Container = ({ audionState, coverDeg, toDeg, playState, pro
    <div className="message-top">
     <div >"I named the site after all the stuff that's been up my butt" - Saus</div>
   </div>
-  <div className="message-middle dead" id = 'construction'>
+  <div className="message-middle" id = 'construction'>
     <div >{"Site still under construction, please just click once, the player fucks up sometimes"}</div>
   </div>
   <div className={`display`}>
