@@ -28,7 +28,7 @@ export const Example4 = compose(
 
         //audio stuff
         if(!player) {
-          
+          props.setLoading(true);
           const frequencyC = document.querySelector('.frequency-bars');
           const sinewaveC = document.querySelector('.sinewave');
           const newPlayer = await loadFile('/api/v1/track', {
@@ -121,7 +121,6 @@ export const Example4 = compose(
   }),
   lifecycle({
     componentDidMount() {
-      this.props.setLoading(true);
       setInterval(() => {
         if(!this.props.player){
           this.props.onPageLoad();
@@ -132,10 +131,7 @@ export const Example4 = compose(
           const rate = parseInt((playbackTime * 100) / duration, 10);
           rate <= 100 && this.props.setProgress(rate);
         }
-      },1000);
-      if(document.getElementById('cover')){
-        document.getElementById('cover').classList.remove('loading'); 
-      }
+      },1000)
     }
   })
 )(Example4Container);

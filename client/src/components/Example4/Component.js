@@ -27,16 +27,6 @@ import { getCoverDeg } from './utils';
           transform:`rotate(${(Date.now() - audionState.startedAt) / 1000 < audionState.duration ? coverDeg : getCoverDeg()}deg)`,
         }
       }
-
-      <div id='playBtn' className='loadWheel'>
-        <i 
-          className={
-            playState ==='play'
-            &&!loading 
-            &&!((Date.now() - audionState.startedAt) / 1000>0)?'fas fa-play fa-5x':''}
-          onClick={onPlayBtnClick}
-        ></i>
-      </div>
 */
 
 export const Example4Container = ({ audionState, coverDeg, toDeg, playState, progress, volumeLevel, loading, onPlayBtnClick, onVolumeChange, onStopBtnClick, onProgressClick }) =>
@@ -54,7 +44,7 @@ export const Example4Container = ({ audionState, coverDeg, toDeg, playState, pro
   <div className={`display`}>
     <img 
       id='cover' 
-      className={`cover loading`}
+      className={`cover`}
       alt={'cover'}
       width='400' 
       height='400' 
