@@ -132,7 +132,10 @@ export const Example4 = compose(
           const rate = parseInt((playbackTime * 100) / duration, 10);
           rate <= 100 && this.props.setProgress(rate);
         }
-      },1000)
+      },1000);
+      if(document.getElementById('cover')){
+        document.getElementById('cover').classList.remove('loading'); 
+      }
     }
   })
 )(Example4Container);

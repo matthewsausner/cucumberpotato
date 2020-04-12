@@ -48,12 +48,12 @@ export const Example4Container = ({ audionState, coverDeg, toDeg, playState, pro
     <div >"I named the site after all the stuff that's been up my butt" - Saus</div>
   </div>
   <div className="message-middle dead" id = 'construction'>
-    <div >{playState === 'stop' ? "" : "Site still under construction, you have to refresh to listen again lol"}</div>
+    <div >{"Site still under construction, please just click once, the player fucks up sometimes"}</div>
   </div>
   <div className={`display`}>
     <img 
       id='cover' 
-      className={`cover${loading || playState === 'play' ?' loading':''}`}
+      className={`cover loading`}
       alt={'cover'}
       width='400' 
       height='400' 
