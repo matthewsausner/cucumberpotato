@@ -37,7 +37,7 @@ export const Example4Container = ({ prstPlayClick, audionState, coverDeg, toDeg,
   <div className={`display`}>
     <img 
       style={
-        (playState!=='play'||loading) && (Date.now() - audionState.startedAt) / 1000 < audionState.duration
+        (playState!=='play') && (Date.now() - audionState.startedAt) / 1000 < audionState.duration
         ?{
           animation: `spin 12s linear infinite`,
           '--deg': `${coverDeg}deg`,

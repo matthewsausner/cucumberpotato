@@ -50,10 +50,14 @@ export const Example4 = compose(
             duration: newPlayer.duration,
           });
           newPlayer.stop();
-          if(document.getElementById('loadWheel')){
-            document.getElementById('loadWheel').classList.remove('loadWheel'); 
-          }
-          props.setLoading(false);
+          
+          setTimeout(function () {
+              props.setLoading(false);
+              if(document.getElementById('loadWheel')){
+                document.getElementById('loadWheel').classList.remove('loadWheel'); 
+              }
+          }, 6000);
+          
 
         }
         return props.setPlayState('play');
