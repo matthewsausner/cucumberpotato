@@ -56,7 +56,7 @@ export const Example4 = compose(
               if(document.getElementById('loadWheel')){
                 document.getElementById('loadWheel').classList.remove('loadWheel'); 
               }
-          }, 6000);
+          }, 7000);
           
 
         }

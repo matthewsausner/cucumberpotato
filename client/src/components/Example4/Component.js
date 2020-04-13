@@ -31,10 +31,10 @@ export const Example4Container = ({ prstPlayClick, audionState, coverDeg, toDeg,
    <div className="message-top">
     <div >"I named the site after all the stuff that's been up my butt" - Saus</div>
   </div>
-  <div className="message-middle" id = 'construction'>
-    <div >{"Site still under construction, please just click once, the player fucks up sometimes"}</div>
+  <div className={`message-middle ${loading?'':'dead'}`} id='construction'>
+    <div >{(Date.now() - audionState.startedAt) / 1000 > audionState.duration?"You have to refresh to listen again lol mb":"It's kind of loud rn, volume controls otw"}</div>
   </div>
-  <div className={`display`}>
+  <div className={`display ${loading?'loading':''}`}>
     <img 
       style={
         (playState!=='play') && (Date.now() - audionState.startedAt) / 1000 < audionState.duration
