@@ -9,6 +9,7 @@ export const Example4 = compose(
   withState('playState', 'setPlayState', 'play'),
   withState('loading', 'setLoading', false),
   withState('player', 'setPlayer', null),
+  withState('prstPlayClick', 'setPrstPlayClick', false),
   withState('audionState', 'setAudionState', {
     startedAt: null,
     pausedAt: null,
@@ -63,10 +64,10 @@ export const Example4 = compose(
     },
 
     onPlayBtnClick: (props) => async () => {
-
+      props.setPlayState('stop');
       const { player, audionState } = props;
       try {
-       
+        props.setPrstPlayClick(true);
         props.changeAudionState({
           startedAt: Date.now() - audionState.pausedAt,
           isPause: false,
@@ -96,6 +97,7 @@ export const Example4 = compose(
       });
       player && player.stop();
       props.setPlayState('play');
+      props.setPrstPlayClick(false);
     },
     onVolumeChange: props => ({ max }) => {
       const value = max / 100;

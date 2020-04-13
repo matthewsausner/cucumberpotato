@@ -29,7 +29,7 @@ import { getCoverDeg } from './utils';
       }
 */
 
-export const Example4Container = ({ audionState, coverDeg, toDeg, playState, progress, volumeLevel, loading, onPlayBtnClick, onVolumeChange, onStopBtnClick, onProgressClick }) =>
+export const Example4Container = ({ prstPlayClick, audionState, coverDeg, toDeg, playState, progress, volumeLevel, loading, onPlayBtnClick, onVolumeChange, onStopBtnClick, onProgressClick }) =>
 <>
  
   <div id='loadWheel' className='loadWheel'>
