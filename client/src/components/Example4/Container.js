@@ -54,7 +54,7 @@ export const Example4 = compose(
           setTimeout(function () {
               props.setLoading(false);
               props.setInitialLoadDone(true);
-          }, 7000);
+          }, 10000);
           
 
         }
