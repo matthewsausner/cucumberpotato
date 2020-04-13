@@ -9,7 +9,7 @@ export const Example4 = compose(
   withState('playState', 'setPlayState', 'play'),
   withState('loading', 'setLoading', false),
   withState('player', 'setPlayer', null),
-  withState('prstPlayClick', 'setPrstPlayClick', false),
+  withState('initialLoadDone', 'setInitialLoadDone', false),
   withState('audionState', 'setAudionState', {
     startedAt: null,
     pausedAt: null,
@@ -53,9 +53,7 @@ export const Example4 = compose(
           
           setTimeout(function () {
               props.setLoading(false);
-              if(document.getElementById('loadWheel')){
-                document.getElementById('loadWheel').classList.remove('loadWheel'); 
-              }
+              props.setInitialLoadDone(true);
           }, 7000);
           
 
@@ -77,7 +75,6 @@ export const Example4 = compose(
         props.setPlayState('stop');
         const { player, audionState } = props;
         try {
-          props.setPrstPlayClick(true);
           props.changeAudionState({
             startedAt: Date.now() - audionState.pausedAt,
             isPause: false,
@@ -97,10 +94,6 @@ export const Example4 = compose(
       props.setCoverDeg(getCoverDeg());
       props.setToDeg(props.toDeg * -1)
 
-      if(document.getElementById('construction')){
-        document.getElementById('construction').classList.remove('dead'); 
-      }
-
       const { player, audionState  } = props;
       props.changeAudionState({
         pausedAt:  Date.now() - audionState.startedAt,
@@ -108,7 +101,6 @@ export const Example4 = compose(
       });
       player && player.stop();
       props.setPlayState('play');
-      props.setPrstPlayClick(false);
     },
     onVolumeChange: props => ({ max }) => {
       const value = max / 100;

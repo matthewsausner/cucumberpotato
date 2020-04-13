@@ -22,17 +22,17 @@ import { getCoverDeg } from './utils';
       }
 */
 
-export const Example4Container = ({ prstPlayClick, audionState, coverDeg, toDeg, playState, progress, volumeLevel, loading, onPlayBtnClick, onVolumeChange, onStopBtnClick, onProgressClick }) =>
+export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDeg, playState, progress, volumeLevel, loading, onPlayBtnClick, onVolumeChange, onStopBtnClick, onProgressClick }) =>
 <>
  
-  <div id='loadWheel' className='loadWheel'>
+  <div id='loadWheel' className={initialLoadDone?'dead':'loadWheel'}>
     <i className={loading?'fas fa-spinner fa-spin fa-5x':''}></i>
   </div>
    <div className="message-top">
     <div >"I named the site after all the stuff that's been up my butt" - Saus</div>
   </div>
-  <div className={`message-middle ${loading?'':'dead'}`} id='construction'>
-    <div >{(Date.now() - audionState.startedAt) / 1000 > audionState.duration?"You have to refresh to listen again lol mb":"It's kind of loud rn, volume controls otw"}</div>
+  <div className={`message-middle ${loading||((Date.now() - audionState.startedAt) / 1000 > audionState.duration && (playState!=='stop'))?'':'dead'}`} id='construction'>
+    <div >{(Date.now() - audionState.startedAt) / 1000 < audionState.duration?"It's kind of loud rn, volume controls otw":"You have to refresh to listen again lol mb"}</div>
   </div>
   <div className={`display ${loading?'loading':''}`}>
     <img 
