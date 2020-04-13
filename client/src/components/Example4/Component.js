@@ -9,13 +9,6 @@ import { getCoverDeg } from './utils';
       ? 'display' 
       : 'dead'
 
-      <div className='loadWheel'>
-        <div>{<i horizontal-align='center' className='fas fa-spinner fa-spin fa-5x'></i>}</div>
-      </div>
-       <div className="message">
-        <div >" I named it after all the stuff I've had up my butt" - Matthew Sausner</div>
-      </div>
-
       style={
         playState!=='play' && (Date.now() - audionState.startedAt) / 1000 < audionState.duration
         ?{
@@ -43,6 +36,17 @@ export const Example4Container = ({ prstPlayClick, audionState, coverDeg, toDeg,
   </div>
   <div className={`display`}>
     <img 
+      style={
+        (playState!=='play'||loading) && (Date.now() - audionState.startedAt) / 1000 < audionState.duration
+        ?{
+          animation: `spin 12s linear infinite`,
+          '--deg': `${coverDeg}deg`,
+          '--toDeg': `${-(360+Math.abs(coverDeg)) }deg`,
+        }
+        :{
+          transform:`rotate(${(Date.now() - audionState.startedAt) / 1000 < audionState.duration ? coverDeg : getCoverDeg()}deg)`,
+        }
+      }
       id='cover' 
       disabled={loading}
       className={`cover`}
@@ -50,7 +54,7 @@ export const Example4Container = ({ prstPlayClick, audionState, coverDeg, toDeg,
       width='400' 
       height='400' 
       src='./girtv1.jpg'
-      onClick={playState === 'play' ? onPlayBtnClick : onStopBtnClick}
+      onClick={playState==='play' ? onPlayBtnClick : onStopBtnClick}
     />
     <div className='player'>
       <div className='bars-wrapper'>

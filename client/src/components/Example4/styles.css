@@ -61,7 +61,7 @@ html{
 
 @keyframes spin {
   from {transform:rotate(var(--deg));}
-  to {transform:rotate(var(--coverDirection));}
+  to {transform:rotate(var(--toDeg));}
 }
 /*start z index shit*/
 .sinewave{

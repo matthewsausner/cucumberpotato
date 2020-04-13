@@ -39,7 +39,7 @@ export const Example4 = compose(
             fillStyle: 'rgb(0, 0, 0)', // background
             strokeStyle: 'rgb(130, 0, 255)', // line color
             lineWidth: 1,
-            fftSize: 4096 // delization of bars from 1024 to 32768
+            fftSize: 2048 // delization of bars from 1024 to 32768
           });
 
           props.setPlayer(newPlayer);
@@ -64,27 +64,34 @@ export const Example4 = compose(
     },
 
     onPlayBtnClick: (props) => async () => {
-      props.setPlayState('stop');
-      const { player, audionState } = props;
-      try {
-        props.setPrstPlayClick(true);
-        props.changeAudionState({
-          startedAt: Date.now() - audionState.pausedAt,
-          isPause: false,
-        });
+      if(document.getElementById('cover')){
+        var img = document.getElementById('cover'); 
+        img.onclick=null;
+      }
+      
+      if(!props.loading){
+        props.setPlayState('stop');
+        const { player, audionState } = props;
+        try {
+          props.setPrstPlayClick(true);
+          props.changeAudionState({
+            startedAt: Date.now() - audionState.pausedAt,
+            isPause: false,
+          });
 
-        player.play(audionState.pausedAt / 1000);
+          player.play(audionState.pausedAt / 1000);
 
-        return props.setPlayState('stop');
-      } catch (e) {
-        props.setLoading(false);
-        console.log(e);
+          return props.setPlayState('stop');
+        } catch (e) {
+          props.setLoading(false);
+          console.log(e);
+        }
       }
     },
     onStopBtnClick: props => () => {
 
-      // props.setCoverDeg(getCoverDeg());
-      // props.setToDeg(props.toDeg * -1)
+      props.setCoverDeg(getCoverDeg());
+      props.setToDeg(props.toDeg * -1)
 
       if(document.getElementById('construction')){
         document.getElementById('construction').classList.remove('dead'); 
