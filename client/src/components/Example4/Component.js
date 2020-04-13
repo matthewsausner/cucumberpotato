@@ -32,7 +32,7 @@ export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDe
     <div >"I named the site after all the stuff that's been up my butt" - Saus</div>
   </div>
   <div className={`message-middle ${loading||((Date.now() - audionState.startedAt) / 1000 > audionState.duration && (playState!=='stop'))?'':'dead'}`} id='construction'>
-    <div >{(Date.now() - audionState.startedAt) / 1000 < audionState.duration?"It's kind of loud rn, volume controls otw":"You have to refresh to listen again lol mb"}</div>
+    <div >{(Date.now() - audionState.startedAt) / 1000 < audionState.duration?"It's kind of loud rn, volume controls otw":`${initialLoadDone?'You have to refresh to listen again lol mb':''}`}</div>
   </div>
   <div className={`display ${loading?'loading':''}`}>
     <img 
