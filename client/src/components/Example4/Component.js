@@ -44,6 +44,7 @@ export const Example4Container = ({ audionState, coverDeg, toDeg, playState, pro
   <div className={`display`}>
     <img 
       id='cover' 
+      disabled={loading}
       className={`cover`}
       alt={'cover'}
       width='400' 
