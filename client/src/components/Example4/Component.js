@@ -64,7 +64,7 @@ export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDe
     </div>
   </div>
   <div className="message-bottom" vertical-align="center">
-    <div >moss don't</div>
+    <div>moss don't</div>
   </div>
   <div className="message-bottomer" vertical-align="center">
     <div >updated sometimes!</div>
