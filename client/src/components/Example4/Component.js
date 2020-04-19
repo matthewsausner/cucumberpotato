@@ -10,7 +10,7 @@ import { getCoverDeg } from './utils';
       : 'dead'
 
       style={
-        playState!=='play' && (Date.now() - audionState.startedAt) / 1000 < audionState.duration
+        (playState!=='play') && (Date.now() - audionState.startedAt) / 1000 < audionState.duration
         ?{
           animation: `spin 12s linear infinite`,
           '--deg': `${coverDeg}deg`,
@@ -36,17 +36,7 @@ export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDe
   </div>
   <div className={`display ${loading?'loading':''}`}>
     <img 
-      style={
-        (playState!=='play') && (Date.now() - audionState.startedAt) / 1000 < audionState.duration
-        ?{
-          animation: `spin 12s linear infinite`,
-          '--deg': `${coverDeg}deg`,
-          '--toDeg': `${-(360+Math.abs(coverDeg)) }deg`,
-        }
-        :{
-          transform:`rotate(${(Date.now() - audionState.startedAt) / 1000 < audionState.duration ? coverDeg : getCoverDeg()}deg)`,
-        }
-      }
+      
       id='cover' 
       disabled={loading}
       className={`cover`}

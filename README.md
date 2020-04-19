@@ -1,1 +1,1 @@
-cucumberpotato : The Website
+I wanted to make a site named after all the stuff i've had up my butt, but cucumberpotatodanica.com didnt have the same ring to it.
