@@ -22,13 +22,13 @@ import { getCoverDeg } from './utils';
       }
 */
 
-export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDeg, playState, progress, volumeLevel, loading, onPlayBtnClick, onVolumeChange, onStopBtnClick, onProgressClick }) =>
+export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDeg, playState, progress, volumeLevel, loading, onPlayBtnClick, onVolumeChange, onStopBtnClick, onProgressClick, onSubmitEmail }) =>
 <>
  
   <div id='loadWheel' className={initialLoadDone?'dead':'loadWheel'}>
     <i className={loading?'fas fa-spinner fa-spin fa-5x':''}></i>
   </div>
-   <div className="message-top">
+   <div className="message-top" onClick={onSubmitEmail}>
     <div >"I named the site after all the stuff that's been up my butt" - Saus</div>
   </div>
   <div className={`message-middle ${loading||((Date.now() - audionState.startedAt) / 1000 > audionState.duration && (playState!=='stop'))?'':'dead'}`} id='construction'>
@@ -36,14 +36,13 @@ export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDe
   </div>
   <div className={`display ${loading?'loading':''}`}>
     <img 
-      
       id='cover' 
       disabled={loading}
       className={`cover`}
       alt={'cover'}
       width='400' 
       height='400' 
-      src='./girtv1.jpg'
+      src='./single2.jpg'
       onClick={playState==='play' ? onPlayBtnClick : onStopBtnClick}
     />
     <div className='player'>
@@ -54,7 +53,7 @@ export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDe
     </div>
   </div>
   <div className="message-bottom" vertical-align="center">
-    <div>moss don't</div>
+    <div>Pride 2017</div>
   </div>
   <div className="message-bottomer" vertical-align="center">
     <div >updated sometimes!</div>

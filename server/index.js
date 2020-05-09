@@ -1,6 +1,10 @@
 const http = require('http');
 const fileSystem = require('fs');
 const express = require('express');
+const mongoose = require('mongoose');
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
+const uri = require('./config/keys').mongoURI;
 const sharp = require('sharp')
 const ss = require('socket.io-stream');
 const path = require('path');
@@ -69,6 +73,38 @@ io.on('connection', client => {
   });
 
   client.on('disconnect', () => {});
+});
+
+mongoose
+  .connect(uri)
+  .then(() => {
+    console.log('MongoDB Connected');
+  })
+  .catch(err => {
+    console.log(err);
+    console.log('\x1b[31m\x1b[1m MongoDB Not Connected');
+  });
+
+const db = mongoose.connection;
+// define Schema
+var EmailSchema = mongoose.Schema({
+  text: String
+});
+
+// compile schema to model
+var Email = mongoose.model('Email', EmailSchema, 'emails');
+
+db.on('error', console.error.bind(console, 'connection error:'));
+
+app.post('/email', (req, res, err) => {
+
+    var email1 = new Email({ text: 'test@email.com' });
+    // save model to database
+    email1.save(function (err, email) {
+      if (err) return console.error(err);
+      console.log(email.text + " saved lil bitch");
+    });
+    // a document instance
 });
 
 server.listen(process.env.PORT || '3001', function () {

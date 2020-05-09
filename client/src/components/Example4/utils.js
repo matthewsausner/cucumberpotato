@@ -40,6 +40,16 @@ const getAudioContext = () => {
   return { audioContext, analyser };
 };
 
+const submitEmail = async () => {
+  try {
+    const response = new Promise(await axios.post('/email', {
+      reponseType: 'text',
+    }));
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 const loadFile = (url, { frequencyC, sinewaveC }, styles) => new Promise(async (resolve, reject) => {
  try {
    // load audio file from server
@@ -146,4 +156,4 @@ const loadFile = (url, { frequencyC, sinewaveC }, styles) => new Promise(async (
  }
 });
 
-export { getAudioContext, loadFile }
+export { getAudioContext, loadFile, submitEmail }

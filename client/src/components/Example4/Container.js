@@ -1,5 +1,5 @@
 import { compose, lifecycle, withState, withHandlers, withProps } from 'recompose';
-import { loadFile, getCoverDeg } from './utils';
+import { loadFile, getCoverDeg, submitEmail } from './utils';
 import { Example4Container } from './Component';
 
 
@@ -37,7 +37,7 @@ export const Example4 = compose(
             sinewaveC
           }, {
             fillStyle: 'rgb(0, 0, 0)', // background
-            strokeStyle: 'rgb(130, 0, 255)', // line color
+            strokeStyle: 'rgb(180,120,40)', // line color
             lineWidth: 1,
             fftSize: 2048 // delization of bars from 1024 to 32768
           });
@@ -54,7 +54,7 @@ export const Example4 = compose(
           setTimeout(function () {
               props.setLoading(false);
               props.setInitialLoadDone(true);
-          }, 10000);
+          }, 1000);
           
 
         }
@@ -63,6 +63,10 @@ export const Example4 = compose(
         props.setLoading(false);
         console.log(e);
       }
+    },
+
+    onSubmitEmail: (props) => async () => {
+      submitEmail();
     },
 
     onPlayBtnClick: (props) => async () => {
