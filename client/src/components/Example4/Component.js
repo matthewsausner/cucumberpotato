@@ -28,6 +28,9 @@ export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDe
   <div id='loadWheel' className={initialLoadDone?'dead':'loadWheel'}>
     <i className={loading?'fas fa-spinner fa-spin fa-5x':''}></i>
   </div>
+  <div id='loadWheel' className={initialLoadDone?'dead':'loadWheel'}>
+    <i className={loading?'fas fa-spinner fa-spin fa-5x':''}></i>
+  </div>
    <div className="message-top" onClick={onSubmitEmail}>
     <div >"I named the site after all the stuff that's been up my butt" - Saus</div>
   </div>
@@ -45,7 +48,7 @@ export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDe
         onClick={playState==='play' ? onPlayBtnClick : onStopBtnClick}
       />
     </div>
-    <div className='player'>
+    <div className={`player ${playState==='play' || ((Date.now() - audionState.startedAt) / 1000 > audionState.duration && (playState!=='stop'))?'dead':''}`}>
       <div className='bars-wrapper'>
         <canvas className='frequency-bars'></canvas>
         <canvas className='sinewave'></canvas>

@@ -16,8 +16,6 @@ export const Example4 = compose(
     isPause: true,
     duration: 0,
   }),
-  withState('coverDeg', 'setCoverDeg', 0),
-  withState('toDeg', 'setToDeg', 1),
   withProps(({ audionState, setAudionState }) => ({
     changeAudionState: newState => setAudionState({ ...audionState, ...newState }),
   })),
@@ -70,10 +68,6 @@ export const Example4 = compose(
     },
 
     onPlayBtnClick: (props) => async () => {
-      if(document.getElementById('cover')){
-        var img = document.getElementById('cover'); 
-        img.onclick=null;
-      }
       
       if(!props.loading){
         props.setPlayState('stop');
@@ -89,15 +83,10 @@ export const Example4 = compose(
           return props.setPlayState('stop');
         } catch (e) {
           props.setLoading(false);
-          console.log(e);
         }
       }
     },
     onStopBtnClick: props => () => {
-
-      props.setCoverDeg(getCoverDeg());
-      props.setToDeg(props.toDeg * -1)
-
       const { player, audionState  } = props;
       props.changeAudionState({
         pausedAt:  Date.now() - audionState.startedAt,
@@ -140,7 +129,7 @@ export const Example4 = compose(
           const rate = parseInt((playbackTime * 100) / duration, 10);
           rate <= 100 && this.props.setProgress(rate);
         }
-      },1000)
+      },10000)
     }
   })
 )(Example4Container);

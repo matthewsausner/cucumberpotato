@@ -1,35 +1,13 @@
 import axios from 'axios';
 
-export const getCoverDeg = () => {
-  var angle = 0;
-  if(document.getElementById("cover")){
-    var el = document.getElementById("cover");
-    var st = window.getComputedStyle(el, null);
-    var tr = st.getPropertyValue("-webkit-transform") ||
-              st.getPropertyValue("-moz-transform") ||
-              st.getPropertyValue("-ms-transform") ||
-              st.getPropertyValue("-o-transform") ||
-              st.getPropertyValue("transform") ||
-              "Either no transform set, or browser doesn't do getComputedStyle";
-
-    // rotation matrix - http://en.wikipedia.org/wiki/Rotation_matrix
-
-    var values = tr.split('(')[1];
-    values = values.split(')')[0];
-    values = values.split(',');
-    var a = values[0];
-    var b = values[1];
-    var c = values[2];
-    var d = values[3];
-
-    var scale = Math.sqrt(a*a + b*b);
-
-    // arc sin, convert from radians to degrees, round
-    // DO NOT USE: see update below
-    var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+export const submitEmail = async () => {
+  try {
+    const response = new Promise(await axios.post('/email', {
+      reponseType: 'text',
+    }));
+  } catch (e) {
+    console.log(e);
   }
-  // works!
-  return angle;
 }
 
 const getAudioContext = () => {
@@ -39,16 +17,6 @@ const getAudioContext = () => {
 
   return { audioContext, analyser };
 };
-
-const submitEmail = async () => {
-  try {
-    const response = new Promise(await axios.post('/email', {
-      reponseType: 'text',
-    }));
-  } catch (e) {
-    console.log(e);
-  }
-}
 
 const loadFile = (url, { frequencyC, sinewaveC }, styles) => new Promise(async (resolve, reject) => {
  try {
@@ -150,10 +118,9 @@ const loadFile = (url, { frequencyC, sinewaveC }, styles) => new Promise(async (
      gainNode.gain.setValueAtTime(level, audioContext.currentTime);
    };
    resolve({ play, stop, setVolume, duration: audioBuffer.duration,  });
-
  } catch (e) {
    reject(e)
  }
 });
 
-export { getAudioContext, loadFile, submitEmail }
+export { getAudioContext, loadFile }
