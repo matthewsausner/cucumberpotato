@@ -52,7 +52,9 @@ export const Example4 = compose(
           setTimeout(function () {
               props.setLoading(false);
               props.setInitialLoadDone(true);
-          }, 10000);
+              var element = document.getElementById("display");
+              element.classList.remove("loading");
+          }, 5000);
           
 
         }
@@ -129,7 +131,7 @@ export const Example4 = compose(
           const rate = parseInt((playbackTime * 100) / duration, 10);
           rate <= 100 && this.props.setProgress(rate);
         }
-      },10000)
+      },1000);
     }
   })
 )(Example4Container);
