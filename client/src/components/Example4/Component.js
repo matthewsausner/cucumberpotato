@@ -35,16 +35,16 @@ export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDe
     <div >{(Date.now() - audionState.startedAt) / 1000 < audionState.duration?"It's kind of loud rn, volume controls otw. Also just click once to play or pause. It's a little janky.":`${initialLoadDone?'You have to refresh to listen again lol mb':''}`}</div>
   </div>
   <div className={`display ${loading?'loading':''}`}>
-    <img 
-      id='cover' 
-      disabled={loading}
-      className={`cover`}
-      alt={'cover'}
-      width='400' 
-      height='400' 
-      src='./single2.jpg'
-      onClick={playState==='play' ? onPlayBtnClick : onStopBtnClick}
-    />
+    <div className='imgWrapper'>
+      <img 
+        id='cover' 
+        disabled={loading}
+        className={`cover`}
+        alt={'cover'}
+        src='./single2.jpg'
+        onClick={playState==='play' ? onPlayBtnClick : onStopBtnClick}
+      />
+    </div>
     <div className='player'>
       <div className='bars-wrapper'>
         <canvas className='frequency-bars'></canvas>

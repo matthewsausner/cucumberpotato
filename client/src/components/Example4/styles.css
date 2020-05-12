@@ -124,12 +124,21 @@ html{
 }
 
 img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  
+}
+
+.imgWrapper {
+  width: 400px;
+  height:400px;
   margin-top: -190px; /* Half the height */
   margin-left: -190px; /* Half the width */
   z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 
 .display {

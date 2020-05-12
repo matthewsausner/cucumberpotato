@@ -37,7 +37,7 @@ export const Example4 = compose(
             sinewaveC
           }, {
             fillStyle: 'rgb(0, 0, 0)', // background
-            strokeStyle: 'rgb(180,120,40)', // line color
+            strokeStyle: 'rgb(156, 113, 65)', // line color
             lineWidth: 1,
             fftSize: 2048 // delization of bars from 1024 to 32768
           });
@@ -54,7 +54,7 @@ export const Example4 = compose(
           setTimeout(function () {
               props.setLoading(false);
               props.setInitialLoadDone(true);
-          }, 1000);
+          }, 10000);
           
 
         }
