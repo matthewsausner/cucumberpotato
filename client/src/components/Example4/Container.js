@@ -48,12 +48,13 @@ export const Example4 = compose(
             duration: newPlayer.duration,
           });
           newPlayer.stop();
+          newPlayer.setVolume(-.35);
           setTimeout(function () {
               props.setLoading(false);
               props.setInitialLoadDone(true);
               var element = document.getElementById("display");
               element.classList.remove("loading");
-          }, 7000);
+          }, 1000);
           
 
         }
