@@ -54,7 +54,7 @@ export const Example4 = compose(
               props.setInitialLoadDone(true);
               var element = document.getElementById("display");
               element.classList.remove("loading");
-          }, 1000);
+          }, 7000);
           
 
         }
