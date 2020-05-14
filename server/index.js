@@ -2,6 +2,7 @@ const http = require('http');
 const fileSystem = require('fs');
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 const uri = require('./config/keys').mongoURI;
@@ -10,6 +11,13 @@ const ss = require('socket.io-stream');
 const path = require('path');
 const app = express();
 const api = express();
+
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
 
 api.get('/track', (req, res, err) => {
   // generate file path
@@ -60,52 +68,39 @@ io.on('connection', client => {
     ss(client).emit('track-stream', stream, { stat });
   });
 
-  client.on('image', () => {
-    const filePath = path.resolve(__dirname, './private', './image.jpg');
-    const stat = fileSystem.statSync(filePath);
-    const readStream = fileSystem.createReadStream(filePath);
-    let transform = sharp();
-    transform = transform.resize(400, 400);
-    readStream.pipe(transform);
-    // pipe stream with response stream
-    readStream.pipe(stream);
-    ss(client).emit('image-stream', stream, { stat });
-  });
-
   client.on('disconnect', () => {});
 });
 
-// mongoose
-//   .connect(uri)
-//   .then(() => {
-//     console.log('MongoDB Connected');
-//   })
-//   .catch(err => {
-//     console.log(err);
-//     console.log('\x1b[31m\x1b[1m MongoDB Not Connected');
-//   });
+mongoose
+  .connect(uri)
+  .then(() => {
+    console.log('MongoDB Connected');
+  })
+  .catch(err => {
+    console.log(err);
+    console.log('\x1b[31m\x1b[1m MongoDB Not Connected');
+  });
 
-// const db = mongoose.connection;
-// // define Schema
-// var EmailSchema = mongoose.Schema({
-//   text: String
-// });
+const db = mongoose.connection;
+// define Schema
+var EmailSchema = mongoose.Schema({
+  text: String
+});
 
-// compile schema to model
-// var Email = mongoose.model('Email', EmailSchema, 'emails');
+//compile schema to model
+var Email = mongoose.model('Email', EmailSchema, 'emails');
 
-// db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', console.error.bind(console, 'connection error:'));
 
-// app.post('/email', (req, res, err) => {
-
-//     var email1 = new Email({ text: 'test@email.com' });
-//     // save model to database
-//     email1.save(function (err, email) {
-//       if (err) return console.error(err);
-//       console.log(email.text + " saved lil bitch");
-//     });
-//     // a document instance
-// });
+app.post('/email', (req, res, err) => {
+    var email1 = new Email({ text: req.body.text });
+    // save model to database
+    email1.save(function (err, email) {
+      if (err) return console.error(err);
+      console.log(email.text + " i saved yo email stop harassing me");
+    });
+    // a document instance
+});
 
 server.listen(process.env.PORT || '3001', function () {
   console.log('Server app listening on port 3000');

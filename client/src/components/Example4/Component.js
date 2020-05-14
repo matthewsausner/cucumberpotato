@@ -31,7 +31,7 @@ export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDe
   <div id='loadWheel' className={initialLoadDone?'dead':'loadWheel'}>
     <i className={loading?'fas fa-spinner fa-spin fa-5x':''}></i>
   </div>
-   <div className="message-top" onClick={onSubmitEmail}>
+   <div className="message-top">
     <div >"I named the site after all the stuff that's been up my butt" - Saus</div>
   </div>
   <div className={`message-middle ${loading||((Date.now() - audionState.startedAt) / 1000 > audionState.duration && (playState!=='stop'))?'':'dead'}`} id='construction'>
@@ -55,10 +55,14 @@ export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDe
       </div>
     </div>
   </div>
-  <div className="message-bottom" vertical-align="center">
+  <div className="message-bottom">
     <div>Pride 2017</div>
   </div>
-  <div className="message-bottomer" vertical-align="center">
-    <div >updated sometimes!</div>
-  </div>
+  <form autoComplete='off' onSubmit={e => { e.preventDefault(); }} >
+    <div className="message-bottomer" >
+      <div>Sign up for the monthly email update/meme blast:
+        <input type='text' autoFocus id='email' className='email' onKeyDown={e=>onSubmitEmail(e)}></input>
+      </div>
+    </div>
+  </form>
 </>;

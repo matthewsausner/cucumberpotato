@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-export const submitEmail = async () => {
+export const submitEmail = async (email) => {
   try {
     const response = new Promise(await axios.post('/email', {
       reponseType: 'text',
+      text: email,
     }));
   } catch (e) {
     console.log(e);

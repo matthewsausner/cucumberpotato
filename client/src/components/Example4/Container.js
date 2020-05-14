@@ -4,7 +4,7 @@ import { Example4Container } from './Component';
 
 
 export const Example4 = compose(
-  withState('volumeLevel', 'setVolumeLevel', 100),
+  withState('volumeLevel', 'setVolumeLevel', -100),
   withState('progress', 'setProgress', 0),
   withState('playState', 'setPlayState', 'play'),
   withState('loading', 'setLoading', false),
@@ -48,13 +48,12 @@ export const Example4 = compose(
             duration: newPlayer.duration,
           });
           newPlayer.stop();
-          
           setTimeout(function () {
               props.setLoading(false);
               props.setInitialLoadDone(true);
               var element = document.getElementById("display");
               element.classList.remove("loading");
-          }, 5000);
+          }, 7000);
           
 
         }
@@ -65,8 +64,21 @@ export const Example4 = compose(
       }
     },
 
-    onSubmitEmail: (props) => async () => {
-      submitEmail();
+    onSubmitEmail: (e) => async (e) => {
+      if(e.key === 'Enter')
+      { 
+        var element = document.getElementById("email");
+        element.focus();
+        var email = element.value;
+        console.log(email);
+        console.log(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email))
+        if (/^(?:[a-zA-Z0-9\.])+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)) {
+          submitEmail(email);
+          element.value='it worked';
+        }else{
+          element.value='didn\'t work';
+        }
+      }
     },
 
     onPlayBtnClick: (props) => async () => {
@@ -82,6 +94,9 @@ export const Example4 = compose(
 
           player.play(audionState.pausedAt / 1000);
 
+          var element = document.getElementById("email");
+          element.focus();
+
           return props.setPlayState('stop');
         } catch (e) {
           props.setLoading(false);
@@ -96,6 +111,9 @@ export const Example4 = compose(
       });
       player && player.stop();
       props.setPlayState('play');
+
+      var element = document.getElementById("email");
+      element.focus();
     },
     onVolumeChange: props => ({ max }) => {
       const value = max / 100;
