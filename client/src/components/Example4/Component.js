@@ -60,7 +60,7 @@ export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDe
   </div>
   <form autoComplete='off' onSubmit={e => { e.preventDefault(); }} >
     <div className="message-bottomer" >
-      <div>Sign up for the email update/meme blast:
+      <div><div className='signup'>Sign up for the email update/meme blast:</div>
         <input type='text' autoFocus id='email' className='email' onKeyDown={e=>onSubmitEmail(e)}></input>
       </div>
     </div>
