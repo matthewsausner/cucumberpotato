@@ -37,30 +37,28 @@ export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDe
   <div className={`message-middle ${loading||((Date.now() - audionState.startedAt) / 1000 > audionState.duration && (playState!=='stop'))?'':'dead'}`} id='construction'>
     <div >{(Date.now() - audionState.startedAt) / 1000 < audionState.duration?"Just click once to play or pause. It's still a little janky.":`${initialLoadDone?'You have to refresh to listen again lol mb':''}`}</div>
   </div>
-  <div id='display' className={`display loading`}>
-    <div className='imgWrapper'>
+  <div className={`imgWrapper ${initialLoadDone?'':' loading'}`}>
       <img 
         id='cover' 
         disabled={loading}
         className={`cover`}
         alt={'cover'}
-        src='./single2.jpg'
+        src='./ThePPTape2017.jpg'
         onClick={playState==='play' ? onPlayBtnClick : onStopBtnClick}
       />
     </div>
-    <div className={`player ${playState==='play' || ((Date.now() - audionState.startedAt) / 1000 > audionState.duration && (playState!=='stop'))?'dead':''}`}>
-      <div className='bars-wrapper'>
-        <canvas className='frequency-bars'></canvas>
-        <canvas className='sinewave'></canvas>
-      </div>
+  <div className={`player ${playState==='play' || ((Date.now() - audionState.startedAt) / 1000 > audionState.duration && (playState!=='stop'))?'dead':''}`}>
+    <div className='bars-wrapper'>
+      <canvas className='frequency-bars'></canvas>
+      <canvas className='sinewave'></canvas>
     </div>
   </div>
   <div className="message-bottom">
-    <div>Pride 2017</div>
+    <div>The PP Tape 2017</div>
   </div>
   <form autoComplete='off' onSubmit={e => { e.preventDefault(); }} >
     <div className="message-bottomer" >
-      <div><div className='signup'>Sign up for the email update/meme blast:</div>
+      <div><div className='signup'>Sign up for the email update/meme blast</div>
         <input type='text' autoFocus id='email' className='email' onKeyDown={e=>onSubmitEmail(e)}></input>
       </div>
     </div>
