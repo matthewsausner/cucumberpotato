@@ -52,7 +52,7 @@ export const Example4 = compose(
           setTimeout(function () {
               props.setLoading(false);
               props.setInitialLoadDone(true);
-          }, 7000);
+          }, 4000);
           
 
         }
@@ -69,8 +69,6 @@ export const Example4 = compose(
         var element = document.getElementById("email");
         element.focus();
         var email = element.value;
-        console.log(email);
-        console.log(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email))
         if (/^(?:[a-zA-Z0-9\.])+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)) {
           submitEmail(email);
           element.value='it worked';
@@ -93,9 +91,6 @@ export const Example4 = compose(
 
           player.play(audionState.pausedAt / 1000);
 
-          var element = document.getElementById("email");
-          element.focus();
-
           return props.setPlayState('stop');
         } catch (e) {
           props.setLoading(false);
@@ -111,8 +106,6 @@ export const Example4 = compose(
       player && player.stop();
       props.setPlayState('play');
 
-      var element = document.getElementById("email");
-      element.focus();
     },
     onVolumeChange: props => ({ max }) => {
       const value = max / 100;
