@@ -43,7 +43,7 @@ export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDe
         disabled={loading}
         className={`cover`}
         alt={'cover'}
-        src='./ThePPTape2017.jpg'
+        src='./mossdont.jpg'
         onClick={playState==='play' ? onPlayBtnClick : onStopBtnClick}
       />
     </div>
