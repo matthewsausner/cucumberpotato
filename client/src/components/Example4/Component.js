@@ -54,7 +54,7 @@ export const Example4Container = ({ initialLoadDone, audionState, coverDeg, toDe
     </div>
   </div>
   <div className="message-bottom">
-    <div>Moss Dont</div>
+    <div>Moss Don't</div>
   </div>
   <form autoComplete='off' onSubmit={e => { e.preventDefault(); }} >
     <div className="message-bottomer" >
