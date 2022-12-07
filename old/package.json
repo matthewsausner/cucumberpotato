@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/matthewsausner/cucumberpotato#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "sharp": "^0.25.2",
     "webpack-node-externals": "^1.7.2"
   },
